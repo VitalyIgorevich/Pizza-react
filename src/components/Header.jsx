@@ -1,17 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
     <div class="header">
     <div class="container">
-      <div class="header__logo">
+      <Link to="/" class="header__logo">
         <img width="38" src="/img/pizza-logo.svg" alt="Pizza logo" />
         <div>
           <h1>React Pizza</h1>
           <p>самая вкусная пицца во вселенной</p>
         </div>
-      </div>
-      <div class="header__cart">
+      </Link>
+      <Link to="/cart" class="header__cart">
         <a href="/cart.html" class="button button--cart">
           <span>520 ₽</span>
           <div class="button__delimiter"></div>
@@ -46,7 +47,7 @@ const Header = () => {
           </svg>
           <span>3</span>
         </a>
-      </div>
+      </Link>
     </div>
   </div>
   )
