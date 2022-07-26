@@ -7,6 +7,7 @@ import Categories from "../components/Categories";
 const Home = () => {
     const[itemsPizza, setItemsPizza] = React.useState([])
     const[isLoader, setIsLoader] = React.useState(true)
+    const[categoriesId, setCategoriesId] = React.useState(0)
   
     React.useEffect(() => {
       fetch('https://62dad12bd1d97b9e0c46fef9.mockapi.io/items')
@@ -25,7 +26,7 @@ const Home = () => {
     <>
     <div class="content__top">
             
-            <Categories />
+            <Categories categoriesId={categoriesId} onClickCategories={(i) => setCategoriesId(i)}/>
             <Sort />
 
           </div>
