@@ -3,8 +3,10 @@ import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/Skeleton";
 import Categories from "../components/Categories";
+import { SearchContext } from '../App';
 
-const Home = ({searcValue, setSearchValue}) => {
+const Home = () => {
+    const {searcValue} = React.useContext(SearchContext)
     const[itemsPizza, setItemsPizza] = React.useState([])
     const[isLoader, setIsLoader] = React.useState(true)
     const[categoriesId, setCategoriesId] = React.useState(0)
