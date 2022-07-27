@@ -8,15 +8,18 @@ import Cart from "./pages/Cart";
 
 
 function App() {
+  const[searcValue, setSearchValue] = React.useState('')
+    
+  
 return (
     <div className="wrapper">
       
-     <Header />
+     <Header searcValue={searcValue} setSearchValue={setSearchValue}/>
 
      <div class="content">
         <div class="container">
           <Routes>
-            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Home searcValue={searcValue} setSearchValue={setSearchValue}/>}/>
             <Route path="/cart" element={<Cart/>}/>
             <Route path="*" element={<NotFound />}/>
           </Routes>

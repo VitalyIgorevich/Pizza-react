@@ -4,18 +4,22 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/Skeleton";
 import Categories from "../components/Categories";
 
-const Home = () => {
+const Home = ({searcValue, setSearchValue}) => {
     const[itemsPizza, setItemsPizza] = React.useState([])
     const[isLoader, setIsLoader] = React.useState(true)
     const[categoriesId, setCategoriesId] = React.useState(0)
     const[sortType, setSortType] = React.useState({name: "популярности", sortProperty: "rating"})
+
+    const sortBy = sortType.sortProperty.replace()
+    const order = sortType.sortProperty.includes()
+    const category = categoriesId > 0 ? `category=${categoriesId}` : '';
+    const search = searcValue ? `&search=${searcValue}`: '';
     
   
     React.useEffect(() => {
       setIsLoader(true)
-      fetch(`https://62dad12bd1d97b9e0c46fef9.mockapi.io/items?${
-        categoriesId > 0 ? `category=${categoriesId}` : ''
-      }&sortBy=${sortType.sortProperty}&order=desc`)
+      fetch(`https://62dad12bd1d97b9e0c46fef9.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search} `
+      )
       .then((response) => {
         return response.json()
       })
@@ -23,11 +27,7 @@ const Home = () => {
         setItemsPizza(data)
         setIsLoader(false)
       })
-    },[categoriesId,sortType])
-    console.log("🚀 ~ categoriesId", categoriesId)
-    
-    
-  
+    },[categoriesId,sortType, searcValue])
     
   return (
     <>
@@ -40,7 +40,14 @@ const Home = () => {
           <h2 class="content__title">Все пиццы</h2>
           <div class="content__items">
             {isLoader ? [...new Array(6)].map((_, index) => <Skeleton key={index} />) :
-            itemsPizza.map((itemPizza) => 
+            itemsPizza
+            // .filter((obj) => {
+            //   if(obj.title.toLowerCase().includes(searcValue.toLowerCase())) {
+            //     return true
+            //   }
+            //   return false
+            // })
+            .map((itemPizza) => 
             <PizzaBlock {...itemPizza}/>
           )}
             
